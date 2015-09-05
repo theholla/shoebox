@@ -1,27 +1,31 @@
 <h1>Stores</h1>
 
-  <table border="2" class="table table-hover">
-    <th>Company</th>
-    <th>Brands Carried</th>
-    <th>Phone</th>
-    <th>Address</th>
-    <th>Remove</th>
-    <tbody>
-      #foreach ($store in $stores)
-      <tr>
-        <td><a href="/stores/$store.getId()">$store.getCompany()</a></td>
-        <td>
-          #if($store.getBrands())
-          <ul>
-            #foreach($brand in $store.getBrands())
-            <li><a href="/brands/$brand.getId()">$brand.getName()</a></li>
-            #end
-          </ul>
-          #end</td>
+
+
+<!-- Table of Stores and Information -->
+
+<table border="2" class="table table-hover">
+  <th>Company</th>
+  <th>Brands Carried</th>
+  <th>Phone</th>
+  <th>Address</th>
+  <th>Remove</th>
+  <tbody>
+    #foreach ($store in $stores)
+    <tr>
+      <td><a href="/stores/$store.getId()">$store.getCompany()</a></td>
+      <td>
+        #if($store.getBrands())
+        <ul>
+          #foreach($brand in $store.getBrands())
+          <li><a href="/brands/$brand.getId()">$brand.getName()</a></li>
+          #end
+        </ul>
+        #end</td>
         <td>$store.getPhone()</td>
         <td>$store.getAddress()</td>
         <td><a href="/stores/$store.getId()/delete"><span class="glyphicon glyphicon-trash"></span></a></td>
-      </tr>
-      #end
-    </tbody>
-  </table>
+    </tr>
+    #end
+  </tbody>
+</table>
