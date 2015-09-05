@@ -1,1 +1,7 @@
 <h1>Brands</h1>
+
+<ol>
+  #foreach ($brand in $brands)
+  <li><a href="/brands/$brand.getId()">$brand.getName()</a></li>
+  #end
+</ol>

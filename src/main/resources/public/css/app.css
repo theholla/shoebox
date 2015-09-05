@@ -1,3 +1,30 @@
+body {
+  background-color: #efefef;
+}
+
+a {
+  color: #00A2AB !important;
+}
+
+.box {
+  border: 6px solid #411D63;
+  -moz-border-radius: 8px;
+  border-radius: 6px;
+}
+
+.padding {
+  margin: 10px;
+  padding: 15px;
+}
+
+.center {
+  text-align: center;
+}
+
+.main {
+  float: left;
+}
+
 img.center {
   display: block;
   margin-left: auto;
