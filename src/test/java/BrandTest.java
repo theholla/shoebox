@@ -63,11 +63,29 @@ public class BrandTest {
   }
 
   @Test
+  public void updateStylishness_changesStylishnessRating() {
+    Brand testBrand = new Brand("Ankleys", 2, 1);
+    testBrand.save();
+    testBrand.updateStylishness(4);
+    assertEquals(4, Brand.firstDBEntry().getStylishness());
+  }
+
+  @Test
+  public void updatePriciness_changesPricinessRating() {
+    Brand testBrand = new Brand("Ankleys", 2, 1);
+    testBrand.save();
+    testBrand.updatePriciness(4);
+    assertEquals(4, Brand.firstDBEntry().getPriciness());
+  }
+
+  @Test
   public void delete_removesObjectFromDatabase() {
     Brand testBrand = new Brand("Ankleys", 2, 1);
     testBrand.save();
     testBrand.delete();
     assertEquals(Brand.listSize(), 0);
   }
+
+  
 
 }

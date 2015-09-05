@@ -72,6 +72,26 @@ public class Store {
     }
   }
 
+  public void updatePhone(String phone) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE stores SET phone = :phone WHERE id = :id";
+      con.createQuery(sql)
+      .addParameter("phone", phone)
+      .addParameter("id", id)
+      .executeUpdate();
+    }
+  }
+
+  public void updateAddress(String address) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE stores SET address = :address WHERE id = :id";
+      con.createQuery(sql)
+      .addParameter("address", address)
+      .addParameter("id", id)
+      .executeUpdate();
+    }
+  }
+
   public void delete() {
     try(Connection con = DB.sql2o.open()) {
       String deleteQuery = "DELETE FROM stores WHERE id = :id;";

@@ -47,19 +47,36 @@ public class StoreTest {
 
   @Test
   public void save_assignsIdToObject() {
-    Store myStore = new Store("RPI", "503-111-2222", "4333 NE First Ave");
-    myStore.save();
+    Store testStore = new Store("RPI", "503-111-2222", "4333 NE First Ave");
+    testStore.save();
     Store savedStore = Store.firstDBEntry();
-    assertEquals(myStore.getId(), savedStore.getId());
+    assertEquals(testStore.getId(), savedStore.getId());
   }
 
   @Test
   public void find_findsStoreInDatabase_true() {
-    Store myStore = new Store("Zapatos", "1-800-333-3333", "New York, New York");
-    myStore.save();
-    Store savedStore = Store.find(myStore.getId());
-    assertTrue(myStore.equals(savedStore));
+    Store testStore = new Store("Zapatos", "1-800-333-3333", "New York, New York");
+    testStore.save();
+    Store savedStore = Store.find(testStore.getId());
+    assertTrue(testStore.equals(savedStore));
   }
+
+  @Test
+  public void updatePhone_changesPhone() {
+    Store testStore = new Store("RPI", "503-111-2222", "4333 NE First Ave");
+    testStore.save();
+    testStore.updatePhone("503-000-2222");
+    assertEquals("503-000-2222", Store.firstDBEntry().getPhone());
+  }
+
+  @Test
+  public void updateAddress_changesAddress() {
+    Store testStore = new Store("RPI", "503-111-2222", "4333 NE First Ave");
+    testStore.save();
+    testStore.updateAddress("4333 NE Second Ave");
+    assertEquals("4333 NE Second Ave", Store.firstDBEntry().getAddress());
+  }
+
 
   @Test
   public void delete_removesObjectFromDatabase() {

@@ -72,6 +72,26 @@ public class Brand {
     }
   }
 
+  public void updatePriciness(int priciness) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE brands SET priciness = :priciness WHERE id = :id";
+      con.createQuery(sql)
+      .addParameter("priciness", priciness)
+      .addParameter("id", id)
+      .executeUpdate();
+    }
+  }
+
+  public void updateStylishness(int stylishness) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE brands SET stylishness = :stylishness WHERE id = :id";
+      con.createQuery(sql)
+      .addParameter("stylishness", stylishness)
+      .addParameter("id", id)
+      .executeUpdate();
+    }
+  }
+
   public void delete() {
     try(Connection con = DB.sql2o.open()) {
       String deleteQuery = "DELETE FROM brands WHERE id = :id;";
