@@ -63,6 +63,14 @@ public class BrandTest {
   }
 
   @Test
+  public void updateName_changesName() {
+    Brand testBrand = new Brand("Ankleys", 2, 1);
+    testBrand.save();
+    testBrand.updateName("KneeToFeet");
+    assertEquals("KneeToFeet", Brand.firstDBEntry().getName());
+  }
+
+  @Test
   public void updateStylishness_changesStylishnessRating() {
     Brand testBrand = new Brand("Ankleys", 2, 1);
     testBrand.save();

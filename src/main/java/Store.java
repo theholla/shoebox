@@ -72,6 +72,16 @@ public class Store {
     }
   }
 
+  public void updateCompany(String company) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE stores SET company = :company WHERE id = :id";
+      con.createQuery(sql)
+      .addParameter("company", company)
+      .addParameter("id", id)
+      .executeUpdate();
+    }
+  }
+
   public void updatePhone(String phone) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "UPDATE stores SET phone = :phone WHERE id = :id";

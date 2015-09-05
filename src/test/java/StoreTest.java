@@ -62,6 +62,14 @@ public class StoreTest {
   }
 
   @Test
+  public void updateCompany_changesCompanyName() {
+    Store testStore = new Store("RPI", "503-111-2222", "4333 NE First Ave");
+    testStore.save();
+    testStore.updateCompany("ShoeVilla");
+    assertEquals("ShoeVilla", Store.firstDBEntry().getCompany());
+  }
+
+  @Test
   public void updatePhone_changesPhone() {
     Store testStore = new Store("RPI", "503-111-2222", "4333 NE First Ave");
     testStore.save();
