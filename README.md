@@ -1,12 +1,12 @@
-# _Shoe Stores_
+# shoebox
 
-##### An advertizing site showcasing stores and the shoe brands that they carry. Date of current version: 09/04/15
+##### An app that allows users to keep track of local shoe stores. Date of current version: 09/04/15
 
 #### By **Diana Holland**
 
 ## Description
 
-In this app, you can showcase shoe brands and the stores that carry them.
+In this app, you can showcase local brands of shoes and keep track of the stores that carry them. Stores can carry multiple brands of shoes, and brands can be sold in multiple stores.
 
 ## Setup
 
