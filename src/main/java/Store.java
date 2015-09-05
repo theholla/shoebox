@@ -37,6 +37,50 @@ public class Store {
     }
   }
 
+  @Override
+  public boolean equals(Object otherStore) {
+    if (!(otherStore instanceof Store)) {
+      return false;
+    } else {
+      Store newStore = (Store) otherStore;
+      return this.getCompany().equals(newStore.getCompany()) &&
+             this.getPhone().equals(newStore.getPhone()) &&
+             this.getAddress().equals(newStore.getAddress()) &&
+             this.getId() == newStore.getId();
+    }
+  }
+
+  public void save() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO stores (company, phone, address) VALUES (:company, :phone, :address)";
+      this.id = (int) con.createQuery(sql, true)
+      .addParameter("company", company)
+      .addParameter("phone", phone)
+      .addParameter("address", address)
+      .executeUpdate()
+      .getKey();
+    }
+  }
+
+  public static Store find(int id) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM stores where id=:id";
+      Store store = con.createQuery(sql)
+      .addParameter("id", id)
+      .executeAndFetchFirst(Store.class);
+      return store;
+    }
+  }
+
+  public void delete() {
+    try(Connection con = DB.sql2o.open()) {
+      String deleteQuery = "DELETE FROM stores WHERE id = :id;";
+      con.createQuery(deleteQuery)
+      .addParameter("id", id)
+      .executeUpdate();
+    }
+  }
+
   public static Store firstDBEntry() {
     return all().get(0);
   }

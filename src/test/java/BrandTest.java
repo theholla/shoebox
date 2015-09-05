@@ -70,44 +70,4 @@ public class BrandTest {
     assertEquals(Brand.listSize(), 0);
   }
 
-  @Test
-  public void addStore_addsStoreToBrand() {
-    // Store myStore = new Store("Mark Twain");
-    // myStore.save();
-    //
-    // Brand myBrand = new Brand("Huckleberry Finn");
-    // myBrand.save();
-    //
-    // myBrand.addStore(myStore);
-    // Store savedStore = myBrand.getStores().get(0);
-    // assertTrue(myStore.equals(savedStore));
-  }
-
-  @Test
-  public void getStores_returnsAllStores_ArrayList() {
-    // Store myStore = new Store("Mark Twain");
-    // myStore.save();
-    //
-    // Brand myBrand = new Brand("Huckleberry Finn");
-    // myBrand.save();
-    //
-    // myBrand.addStore(myStore);
-    // List savedStores = myBrand.getStores();
-    // assertEquals(savedStores.size(), 1);
-  }
-
-  @Test
-  public void delete_deletesAllBrandsAndListAssociations() {
-    // Store myStore = new Store("Mark Twain");
-    // myStore.save();
-    //
-    // Brand myBrand = new Brand("Huckleberry Finn");
-    // myBrand.save();
-    //
-    // myBrand.addStore(myStore);
-    // myBrand.delete();
-    // assertEquals(myStore.getBrands().size(), 0);
-  }
-
-
 }
