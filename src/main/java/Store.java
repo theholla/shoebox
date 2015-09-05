@@ -98,6 +98,43 @@ public class Store {
       con.createQuery(deleteQuery)
       .addParameter("id", id)
       .executeUpdate();
+
+      String joinDeleteQuery = "DELETE FROM stores_brands WHERE store_id = :store_id";
+      con.createQuery(joinDeleteQuery)
+      .addParameter("store_id", this.getId())
+      .executeUpdate();
+    }
+  }
+
+  public void addBrand(Brand brand) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO stores_brands (store_id, brand_id) VALUES (:store_id, :brand_id)";
+      con.createQuery(sql)
+      .addParameter("store_id", this.getId())
+      .addParameter("brand_id", brand.getId())
+      .executeUpdate();
+    }
+  }
+
+  public ArrayList<Brand> getBrands() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT brand_id FROM stores_brands WHERE store_id = :store_id";
+
+      List<Integer> brandIds = con.createQuery(sql)
+      .addParameter("store_id", this.getId())
+      .executeAndFetch(Integer.class);
+
+      ArrayList<Brand> brandsInStore = new ArrayList<Brand>();
+
+      for (Integer brandId : brandIds) {
+        String brandQuery = "SELECT * FROM brands WHERE id = :brand_id";
+        Brand brand = con.createQuery(brandQuery)
+        .addParameter("brand_id", brandId)
+        .executeAndFetchFirst(Brand.class);
+
+        brandsInStore.add(brand);
+      }
+      return brandsInStore;
     }
   }
 

@@ -83,8 +83,41 @@ public class StoreTest {
     Store testStore = new Store("Zapatos", "1-800-333-3333", "New York, New York");
     testStore.save();
     testStore.delete();
-    assertEquals(Store.listSize(), 0);
+    assertEquals(0, Store.listSize());
   }
 
+
+  @Test
+  public void addBrand_addsBrandToStore() {
+    Store testStore = new Store("Imeldons", "408-333-2222", "72 NW 45th Ave");
+    testStore.save();
+    Brand testBrand = new Brand("Trucks", 4, 2);
+    testBrand.save();
+    testStore.addBrand(testBrand);
+    Brand savedBrand = testStore.getBrands().get(0);
+    assertTrue(testBrand.equals(savedBrand));
+  }
+
+  @Test
+  public void getBrands_returnsAllBrands_ArrayList() {
+    Store testStore = new Store("Imeldons", "408-333-2222", "72 NW 45th Ave");
+    testStore.save();
+    Brand testBrand = new Brand("Trucks", 4, 2);
+    testBrand.save();
+    testStore.addBrand(testBrand);
+    List savedBrands = testStore.getBrands();
+    assertEquals(1, savedBrands.size());
+  }
+
+  @Test
+  public void delete_deletesAllListAssociations() {
+    Store testStore = new Store("Zapatos", "1-800-333-3333", "New York, New York");
+    testStore.save();
+    Brand testBrand = new Brand("Trucks", 4, 2);
+    testBrand.save();
+    testStore.addBrand(testBrand);
+    testStore.delete();
+    assertEquals(0, testBrand.getStores().size());
+  }
 
 }

@@ -48,18 +48,18 @@ public class BrandTest {
 
   @Test
   public void save_assignsIdToObject() {
-    Brand myBrand = new Brand("Ankleys", 2, 1);
-    myBrand.save();
+    Brand testBrand = new Brand("Ankleys", 2, 1);
+    testBrand.save();
     Brand savedBrand = Brand.firstDBEntry();
-    assertEquals(myBrand.getId(), savedBrand.getId());
+    assertEquals(testBrand.getId(), savedBrand.getId());
   }
 
   @Test
   public void find_findsBrandInDatabase_true() {
-    Brand myBrand = new Brand("Trucks", 4, 2);
-    myBrand.save();
-    Brand savedBrand = Brand.find(myBrand.getId());
-    assertTrue(myBrand.equals(savedBrand));
+    Brand testBrand = new Brand("Trucks", 4, 2);
+    testBrand.save();
+    Brand savedBrand = Brand.find(testBrand.getId());
+    assertTrue(testBrand.equals(savedBrand));
   }
 
   @Test
@@ -86,6 +86,42 @@ public class BrandTest {
     assertEquals(Brand.listSize(), 0);
   }
 
-  
+  @Test
+  public void addStore_addsStoreToBrand() {
+    Store testStore = new Store("RPI", "503-111-2222", "4333 NE First Ave");
+    testStore.save();
+
+    Brand testBrand = new Brand("Ankleys", 2, 1);
+    testBrand.save();
+
+    testBrand.addStore(testStore);
+    Store savedStore = testBrand.getStores().get(0);
+    assertTrue(testStore.equals(savedStore));
+  }
+
+  @Test
+  public void getStores_returnsAllStores_ArrayList() {
+    Store testStore = new Store("RPI", "503-111-2222", "4333 NE First Ave");
+    testStore.save();
+
+    Brand testBrand = new Brand("Ankleys", 2, 1);
+    testBrand.save();
+
+    testBrand.addStore(testStore);
+    List savedStores = testBrand.getStores();
+    assertEquals(savedStores.size(), 1);
+  }
+
+  @Test
+  public void delete_deletesAllBrandsAndListAssociations() {
+    Store testStore = new Store("RPI", "503-111-2222", "4333 NE First Ave");
+    testStore.save();
+    Brand testBrand = new Brand("Ankleys", 2, 1);
+    testBrand.save();
+    testBrand.addStore(testStore);
+    testBrand.delete();
+    assertEquals(testStore.getBrands().size(), 0);
+  }
+
 
 }
