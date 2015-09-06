@@ -13,6 +13,8 @@ public class App {
     /* Index */
     get("/", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
+      model.put("stores", Store.all());
+      model.put("brands", Brand.all());
       model.put("template", "templates/index.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -121,10 +123,10 @@ public class App {
       int id = Integer.parseInt(request.params("id"));
       Brand editBrand = Brand.find(id);
       String name = request.queryParams("name");
-      editBrand.updateName(name);
       int priciness = Integer.parseInt(request.queryParams("priciness"));
-      editBrand.updatePriciness(priciness);
       int stylishness = Integer.parseInt(request.queryParams("stylishness"));
+      editBrand.updateName(name);
+      editBrand.updatePriciness(priciness);
       editBrand.updateStylishness(stylishness);
       model.put("brands", Brand.all());
       model.put("stores", Store.all());
@@ -150,16 +152,28 @@ public class App {
       int id = Integer.parseInt(request.params("id"));
       Store editStore = Store.find(id);
       String company = request.queryParams("company");
-      editStore.updateCompany(company);
       String phone = request.queryParams("phone");
-      editStore.updatePhone(phone);
       String address = request.queryParams("address");
+      editStore.updateCompany(company);
+      editStore.updatePhone(phone);
       editStore.updateAddress(address);
       model.put("brands", Brand.all());
       model.put("stores", Store.all());
       model.put("template", "templates/stores.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    /*  List of stores --> DELETE store */
+    get("/stores/:id/delete", (request,response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      int id = Integer.parseInt(request.params("id"));
+      Store deleteStore = Store.find(id);
+      deleteStore.delete();
+      model.put("store", Store.all());
+      model.put("brand", Brand.all());
+      response.redirect("/stores");
+      return null;
+    });
 
   }
 }

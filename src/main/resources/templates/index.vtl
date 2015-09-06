@@ -2,25 +2,24 @@
   <title>Shoe Box</title>
 </head>
 <body>
-  <h1 class='center'>a shoe store and brand tracker</h1>
+  <h2>Keep track of your favorite stores and brands. Throw some data in your shoebox,
+    then go ride bikes or something.</h2>
 
   <div class='container-fluid'>
-
-    <div class='row'>
-      With shoebox, anyone can keep track of their favorite shoe stores and the brands
-      that they carry.
-    </div>
     <div class='row'>
 
       <!-- Stores column -->
 
       <div class='col-sm-6'>
         <div class='box padding center'>
-          <h3><a href='/stores'>stores<span class='glyphicon glyphicon-chevron-right'></span></a></h3>
-          Shoebox can keep track of an unlimited number of shoe stores for you! Deserunt laboris
-          drumstick fatback nisi aliquip, nostrud jowl officia quis elit in kielbasa eu ea. Ham
-          magna turducken fatback. Venison tri-tip cupidatat magna commodo dolore. Leberkas id minim,
-          voluptate bacon officia biltong tail in ex shoulder.
+          #if ($stores.size() < 2)
+            <!-- <img class='center' alt='sad shoebox' src='img/shoebox_sad'> -->
+            <h3>Your shoebox looks lonely. Care to add a few stores?</h3>
+            <h3><a href='/stores'>add a store<span class='glyphicon glyphicon-chevron-right'></span></a></h3>
+            #else
+            <h3>this shoebox contains $stores.size() stores</h3>
+            <h3><a href='/stores'>see your stores<span class='glyphicon glyphicon-chevron-right'></span></a></h3>
+          #end
         </div>
       </div>
 
@@ -28,11 +27,13 @@
 
       <div class='col-sm-6'>
         <div class='box padding center'>
-          <h3><a href='/brands'>brands<span class='glyphicon glyphicon-chevron-right'></span></a></h3>
-          We are so proud to represent $brands.getSize() brands and counting! Deserunt laboris
-          drumstick fatback nisi aliquip, nostrud jowl officia quis elit in kielbasa eu ea. Ham
-          magna turducken fatback. Venison tri-tip cupidatat magna commodo dolore. Leberkas id minim,
-          voluptate bacon officia biltong tail in ex shoulder.
+          #if ($brands.size() < 2)
+            <h3>Have a favorite brand? Add it to your shoebox!</h3>
+            <h3><a href='/brands'>add a brand<span class='glyphicon glyphicon-chevron-right'></span></a></h3>
+            #else
+            <h3>there are $brands.size() brands in your shoebox</h3>
+            <h3><a href='/brands'>see your brands<span class='glyphicon glyphicon-chevron-right'></span></a></h3>
+          #end
         </div>
       </div>
 

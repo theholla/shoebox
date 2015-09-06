@@ -31,7 +31,7 @@ public class Brand {
   }
 
   public static List<Brand> all() {
-    String sql = "SELEcT * FROM brands ORDER BY name ASC";
+    String sql = "SELECT DISTINCT ON (name) * FROM brands ORDER BY name ASC";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql).executeAndFetch(Brand.class);
     }

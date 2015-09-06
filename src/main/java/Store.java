@@ -31,7 +31,7 @@ public class Store {
   }
 
   public static List<Store> all() {
-    String sql = "SELECT * FROM stores ORDER BY company ASC";
+    String sql = "SELECT DISTINCT ON (company) * FROM stores ORDER BY company ASC";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql).executeAndFetch(Store.class);
     }

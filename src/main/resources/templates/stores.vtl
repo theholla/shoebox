@@ -1,5 +1,7 @@
 #if ($editStore)
 
+  <!-- Update store form -->
+
 <h3>Please update everything that's changed:</h3>
 <form action="/stores/$editStore.getId()/edit" method="post">
   <label for="company">Company:</label>
@@ -17,12 +19,13 @@
 #else
 
   #if ($stores.size() !=0)
-    <h3>Local stores for buying all the shoes:</h3>
+    <h3>Your favorite stores:</h3>
 
     <!-- Table of Stores and Information -->
-    <table border="2" class="table table-hover">
+
+    <table border="0" class="table table-hover">
       <th>Company</th>
-      <th>Brands Carried</th>
+      <th>Selection</th>
       <th>Phone</th>
       <th>Address</th>
       <th>Remove</th>
@@ -48,7 +51,7 @@
 
     #else
     <hr/>
-    No stores in town? Do you live in the forest?
+    Our records don't show any stores in your town. Do you live in the forest?
   #end
 
   <hr/>
@@ -58,7 +61,7 @@
   <form action="/stores" method="post">
     <div class="form-group row">
       <div class="col-sm-6">
-        <h4>Hey shoebox, there's a new store in my town:</h4>
+        <h4>Hey shoebox, there's a new store in town:</h4>
         <label for="company" class="sr-only">Company</label>
         <input id="company" name="company" class="form-control" type="text" placeholder="Company Name">
       </div>

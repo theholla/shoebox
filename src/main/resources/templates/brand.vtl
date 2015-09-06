@@ -10,21 +10,24 @@ condimentum lorem vitae commodo lobortis. Quisque eget pretium orci, bibendum sa
 
 <hr/>
 
+<!-- Lists of stores where brand is sold -->
+
 #if($brand.getStores().size() != 0)
-  <p>Find this brand at your local...</p>
+  <h4>Find this brand at your local...</h4>
   <ul>
     #foreach($store in $brand.getStores())
       <li><a href="/stores/$store.getId()">$store.getCompany()</a></li>
     #end
   </ul>
 #else
-<h4>This brand isn't currently carried anywhere near you. If it becomes available, let us know!!!</h4>
+<h4>It looks like this brand isn't currently available in your town.</h4>
 #end
 
 <hr/>
 
-<h4>Is this brand sold in another store? Add it here:</h4>
+<!-- Select form to join stores to this brand -->
 
+<h4>Add stores that carry $brand.getName() shoes:</h4>
 <form action='/add_stores' method='post'>
     <input id="brand_id" name="brand_id" type="hidden" value="$brand.getId()">
     <label for="store_id" class="sr-only">Select an store</label>

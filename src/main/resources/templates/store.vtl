@@ -11,6 +11,8 @@ condimentum lorem vitae commodo lobortis. Quisque eget pretium orci, bibendum sa
 
 <hr/>
 
+<!-- List of brands that this store carries -->
+
 #if($store.getBrands().size() !=0)
   <h4>This store currently carries the following brands:</h4>
   <ol>
@@ -24,8 +26,9 @@ condimentum lorem vitae commodo lobortis. Quisque eget pretium orci, bibendum sa
 
 <hr/>
 
-<h4>Did this just stock a new brand? Add it here:</h4>
+<!-- Select form to join brands to this store -->
 
+<h4>Did this store just stock a new brand? Add it here:</h4>
 <form action='/add_brands' method='post'>
     <input id="store_id" name="store_id" type="hidden" value="$store.getId()">
     <label for="brand_id" class="sr-only">Select a brand</label>
