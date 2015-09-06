@@ -30,10 +30,6 @@ a {
   text-align: right;
 }
 
-.main {
-  float: left;
-}
-
 img.center {
   display: block;
   margin-left: auto;
@@ -43,4 +39,8 @@ img.center {
 .glyphicon {
   margin-right: 5px;
   margin-left: 5px;
+}
+
+#company, #phone, #address {
+  background-color: #;
 }

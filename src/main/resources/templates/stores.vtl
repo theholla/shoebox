@@ -1,6 +1,39 @@
-<h1>Stores</h1>
+<!-- New Store Form -->
 
+<form action="/stores" method="post">
 
+  <div class="form-group row">
+    <div class="col-sm-6">
+      <h2>Add a new store!</h2>
+
+      <label for="company" class="sr-only">Company</label>
+      <input id="company" name="company" class="form-control" type="text" placeholder="Company Name">
+
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-6">
+
+      <label for="phone" class="sr-only">Phone</label>
+      <input id="phone" name="phone" class="form-control" type="text" placeholder="Phone">
+
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-6">
+
+      <label for="address" class="sr-only">Address</label>
+      <input id="address" name="address" class="form-control" type="text" placeholder="Address">
+
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-default">submit</button>
+</form>
+
+<hr/>
 
 <!-- Table of Stores and Information -->
 
