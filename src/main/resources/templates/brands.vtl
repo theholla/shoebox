@@ -1,47 +1,65 @@
-#if ($brands.size() !=0)
-  <h3>Brands galore!</h3>
+#if ($editBrand)
 
-    <!-- List of Brand Names -->
+  <h3>Please update everything that's changed:</h3>
+  <form action="/brands/$editBrand.getId()/edit" method="post">
+  <label for="name">Name:</label>
+  <input id="name" name="name" type="text" value="$editBrand.getName()">
 
-    <ol>
-      #foreach ($brand in $brands)
-      <li><a href="/brands/$brand.getId()">$brand.getName()</a></li>
-      #end
-    </ol>
+  <label for="priciness">Priciness:</label>
+  <input id="priciness" name="priciness" type="number" min="1" max="5" value="$editBrand.getPriciness()">
 
-  #else
-  <hr/>
-  No brands? Are you at Burning Man?
-#end
+  <label for="stylishness">Stylishness:</label>
+  <input id="stylishness" name="stylishness" type="number" min="1" max="5" value="$editBrand.getStylishness()">
 
-
-<hr/>
-
-<!-- New Brand Form -->
-
-<form action="/brands" method="post">
-  <div class="form-group row">
-    <div class="col-sm-6">
-      <h4>Hey shoebox, there's a brand you should know about:</h4>
-      <label for="name" class="sr-only">Brand Name</label>
-      <input id="name" name="name" class="form-control" type="text" placeholder="Brand Name">
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <div class="col-sm-6">
-      <label for="priciness" class="sr-only">How expensive? From 1-5</label>
-        <input id="priciness" name="priciness" class="form-control" type="number" min="1" max="5" placeholder="How expensive? From 1-5">
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <div class="col-sm-6">
-      <label for="stylishness" class="sr-only">How stylish? From 1-5</label>
-      <input id="stylishness" name="stylishness" class="form-control" type="number" min="1" max="5" placeholder="How stylish? From 1-5">
-    </div>
-  </div>
-  <button type="submit" class="btn btn-default">submit</button>
+  <button type="submit" class="btn btn-primary">Edit brand</button>
 </form>
 
-<hr/>
+#else
+
+  #if ($brands.size() !=0)
+    <h3>Brands galore!</h3>
+
+      <!-- List of Brand Names -->
+
+      <ol>
+        #foreach ($brand in $brands)
+        <li><a href="/brands/$brand.getId()">$brand.getName()</a></li>
+        #end
+      </ol>
+
+    #else
+    <hr/>
+    No brands? Are you at Burning Man?
+  #end
+
+
+  <hr/>
+
+  <!-- New Brand Form -->
+
+  <form action="/brands" method="post">
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <h4>Hey shoebox, there's a brand you should know about:</h4>
+        <label for="name" class="sr-only">Brand Name</label>
+        <input id="name" name="name" class="form-control" type="text" placeholder="Brand Name">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <label for="priciness" class="sr-only">How expensive? From 1-5</label>
+          <input id="priciness" name="priciness" class="form-control" type="number" min="1" max="5" placeholder="How expensive? From 1-5">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <label for="stylishness" class="sr-only">How stylish? From 1-5</label>
+        <input id="stylishness" name="stylishness" class="form-control" type="number" min="1" max="5" placeholder="How stylish? From 1-5">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-default">submit</button>
+  </form>
+
+#end

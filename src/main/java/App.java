@@ -103,5 +103,34 @@ public class App {
       return null;
     });
 
+    /* Individual brand --> get edit page */
+    get("/brands/:id/edit", (request,response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      int id = Integer.parseInt(request.params("id"));
+      Brand editBrand = Brand.find(id);
+      model.put("editBrand", editBrand);
+      model.put("brands", Brand.all());
+      model.put("stores", Store.all());
+      model.put("template", "templates/brands.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    /* Brand edit page --> UPDATE details */
+    post("/brands/:id/edit", (request,response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      int id = Integer.parseInt(request.params("id"));
+      Brand editBrand = Brand.find(id);
+      String name = request.queryParams("name");
+      editBrand.updateName(name);
+      int priciness = Integer.parseInt(request.queryParams("priciness"));
+      editBrand.updatePriciness(priciness);
+      int stylishness = Integer.parseInt(request.queryParams("stylishness"));
+      editBrand.updateStylishness(stylishness);
+      model.put("brands", Brand.all());
+      model.put("stores", Store.all());
+      model.put("template", "templates/brands.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
   }
 }
