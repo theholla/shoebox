@@ -47,6 +47,17 @@ public class App {
       return null;
     });
 
+    /* List of Brands -> POST a new brand*/
+    post("/brands", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      String name = request.queryParams("name");
+      int priciness = Integer.parseInt(request.queryParams("priciness"));
+      int stylishness = Integer.parseInt(request.queryParams("stylishness"));
+      Brand newBrand = new Brand(name, priciness, stylishness);
+      newBrand.save();
+      response.redirect("/brands");
+      return null;
+    });
 
 
   }
