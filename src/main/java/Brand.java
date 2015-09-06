@@ -136,7 +136,7 @@ public class Brand {
       ArrayList<Store> stores = new ArrayList<Store>();
 
       for (Integer storeId : storeIds) {
-        String brandQuery = "Select * From stores WHERE id = :storeId";
+        String brandQuery = "SELECT DISTINCT ON (company) * FROM stores WHERE id = :storeId";
         Store store = con.createQuery(brandQuery)
         .addParameter("storeId", storeId)
         .executeAndFetchFirst(Store.class);
