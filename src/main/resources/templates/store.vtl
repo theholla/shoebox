@@ -1,10 +1,13 @@
 <h2>Store: $store.getCompany() <a href="/stores/$store.getId()/edit">
                                   <span class="glyphicon glyphicon-cog"></span></a></h2>
 
-Store Description: $store.getCompany() is a cool and hip place to buy shoes. Sed
+<p><strong>Phone:</strong> $store.getPhone()
+  <br><strong>Address:</strong> $store.getAddress(), Portland, Oregon 97212</p>
+<p>Store Description: $store.getCompany() is a cool and hip place to buy shoes. Sed
 ligula ligula, fermentum ut scelerisque vitae, cursus sed purus. Morbi faucibus
 sapien non augue cursus pellentesque. Duis tincidunt egestas vestibulum. Vivamus
-condimentum lorem vitae commodo lobortis. Quisque eget pretium orci, bibendum sagittis massa.
+condimentum lorem vitae commodo lobortis. Quisque eget pretium orci, bibendum sagittis massa.</p>
+
 
 <hr/>
 
@@ -21,7 +24,7 @@ condimentum lorem vitae commodo lobortis. Quisque eget pretium orci, bibendum sa
 
 <hr/>
 
-<h4>Does this store carry a new brand? Add it here:</h4>
+<h4>Did this just stock a new brand? Add it here:</h4>
 
 <form action='/add_brands' method='post'>
     <input id="store_id" name="store_id" type="hidden" value="$store.getId()">

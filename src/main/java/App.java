@@ -132,5 +132,34 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    /* Individual store --> get edit page */
+    get("/stores/:id/edit", (request,response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      int id = Integer.parseInt(request.params("id"));
+      Store editStore = Store.find(id);
+      model.put("editStore", editStore);
+      model.put("brands", Brand.all());
+      model.put("stores", Store.all());
+      model.put("template", "templates/stores.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    /* Store edit page --> UPDATE details */
+    post("/stores/:id/edit", (request,response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      int id = Integer.parseInt(request.params("id"));
+      Store editStore = Store.find(id);
+      String company = request.queryParams("company");
+      editStore.updateCompany(company);
+      String phone = request.queryParams("phone");
+      editStore.updatePhone(phone);
+      String address = request.queryParams("address");
+      editStore.updateAddress(address);
+      model.put("brands", Brand.all());
+      model.put("stores", Store.all());
+      model.put("template", "templates/stores.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
   }
 }

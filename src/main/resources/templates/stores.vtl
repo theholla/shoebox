@@ -1,65 +1,83 @@
-#if ($stores.size() !=0)
-  <h3>Local stores for buying all the shoes:</h3>
+#if ($editStore)
 
-  <!-- Table of Stores and Information -->
-  <table border="2" class="table table-hover">
-    <th>Company</th>
-    <th>Brands Carried</th>
-    <th>Phone</th>
-    <th>Address</th>
-    <th>Remove</th>
-    <tbody>
-      #foreach ($store in $stores)
-      <tr>
-        <td><a href="/stores/$store.getId()">$store.getCompany()</a></td>
-        <td>
-          #if($store.getBrands())
-          <ul>
-            #foreach($brand in $store.getBrands())
-            <li><a href="/brands/$brand.getId()">$brand.getName()</a></li>
-            #end
-          </ul>
-          #end</td>
-          <td>$store.getPhone()</td>
-          <td>$store.getAddress()</td>
-          <td><a href="/stores/$store.getId()/delete"><span class="glyphicon glyphicon-trash"></span></a></td>
-        </tr>
-        #end
-      </tbody>
-    </table>
+<h3>Please update everything that's changed:</h3>
+<form action="/stores/$editStore.getId()/edit" method="post">
+  <label for="company">Company:</label>
+  <input id="company" name="company" type="text" value="$editStore.getCompany()">
 
-  #else
-  <hr/>
-  No stores in town? Do you live in the forest?
-#end
+  <label for="phone">Phone:</label>
+  <input id="phone" name="phone" type="text" value="$editStore.getPhone()">
 
-<hr/>
+  <label for="address">Street Address:</label>
+  <input id="address" name="address" type="text" value="$editStore.getAddress()">
 
-<!-- New Store Form -->
-
-<form action="/stores" method="post">
-  <div class="form-group row">
-    <div class="col-sm-6">
-      <h4>Hey shoebox, there's a new store in my town:</h4>
-      <label for="company" class="sr-only">Company</label>
-      <input id="company" name="company" class="form-control" type="text" placeholder="Company Name">
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <div class="col-sm-6">
-      <label for="phone" class="sr-only">Phone</label>
-      <input id="phone" name="phone" class="form-control" type="text" placeholder="Phone">
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <div class="col-sm-6">
-      <label for="address" class="sr-only">Address</label>
-      <input id="address" name="address" class="form-control" type="text" placeholder="Address">
-    </div>
-  </div>
-  <button type="submit" class="btn btn-default">submit</button>
+  <button type="submit" class="btn btn-default">Edit store</button>
 </form>
 
-<hr/>
+#else
+
+  #if ($stores.size() !=0)
+    <h3>Local stores for buying all the shoes:</h3>
+
+    <!-- Table of Stores and Information -->
+    <table border="2" class="table table-hover">
+      <th>Company</th>
+      <th>Brands Carried</th>
+      <th>Phone</th>
+      <th>Address</th>
+      <th>Remove</th>
+      <tbody>
+        #foreach ($store in $stores)
+        <tr>
+          <td><a href="/stores/$store.getId()">$store.getCompany()</a></td>
+          <td>
+            #if($store.getBrands())
+            <ul>
+              #foreach($brand in $store.getBrands())
+              <li><a href="/brands/$brand.getId()">$brand.getName()</a></li>
+              #end
+            </ul>
+            #end</td>
+            <td>$store.getPhone()</td>
+            <td>$store.getAddress()</td>
+            <td><a href="/stores/$store.getId()/delete"><span class="glyphicon glyphicon-trash"></span></a></td>
+          </tr>
+          #end
+        </tbody>
+      </table>
+
+    #else
+    <hr/>
+    No stores in town? Do you live in the forest?
+  #end
+
+  <hr/>
+
+  <!-- New Store Form -->
+
+  <form action="/stores" method="post">
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <h4>Hey shoebox, there's a new store in my town:</h4>
+        <label for="company" class="sr-only">Company</label>
+        <input id="company" name="company" class="form-control" type="text" placeholder="Company Name">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <label for="phone" class="sr-only">Phone</label>
+        <input id="phone" name="phone" class="form-control" type="text" placeholder="Phone">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <label for="address" class="sr-only">Address</label>
+        <input id="address" name="address" class="form-control" type="text" placeholder="Address">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-default">submit</button>
+  </form>
+
+#end
