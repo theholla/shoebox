@@ -1,0 +1,35 @@
+<h2>Store: $store.getCompany() <a href="/stores/$store.getId()/edit">
+                                  <span class="glyphicon glyphicon-cog"></span></a></h2>
+
+Store Description: $store.getCompany() is a cool and hip place to buy shoes. Sed
+ligula ligula, fermentum ut scelerisque vitae, cursus sed purus. Morbi faucibus
+sapien non augue cursus pellentesque. Duis tincidunt egestas vestibulum. Vivamus
+condimentum lorem vitae commodo lobortis. Quisque eget pretium orci, bibendum sagittis massa.
+
+<hr/>
+
+#if($store.getBrands().size() !=0)
+  <h4>This store currently carries the following brands:</h4>
+  <ol>
+    #foreach($brand in $store.getBrands())
+      <li><a href="/brands/$brand.getId()">$brand.getName()</a></li>
+    #end
+  </ol>
+#else
+  <h4>This store is so popular!!! It sold everything. All shoes of all brands are out of stock.</h4>
+#end
+
+<hr/>
+
+<h4>Does this store carry a new brand? Add it here:</h4>
+
+<form action='/add_brands' method='post'>
+    <input id="store_id" name="store_id" type="hidden" value="$store.getId()">
+    <label for="brand_id" class="sr-only">Select a brand</label>
+    <select id='brand_id' name='brand_id' type='text'>
+      #foreach($brand in $brands)
+        <option value="$brand.getId()"> $brand.getName() </option>
+      #end
+    </select>
+    <button type='submit' class="btn btn-primary">Add brand</button>
+</form>

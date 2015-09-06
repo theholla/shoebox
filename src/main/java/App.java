@@ -59,6 +59,28 @@ public class App {
       return null;
     });
 
+    /* List of stores --> view an individual store */
+    get("/stores/:id", (request,response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      int id = Integer.parseInt(request.params("id"));
+      Store store = Store.find(id);
+      model.put("store", store);
+      model.put("brands", store.getBrands());
+      model.put("template", "templates/store.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    /* List of brands --> view an individual brand */
+    get("/brands/:id", (request,response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      int id = Integer.parseInt(request.params("id"));
+      Brand brand = Brand.find(id);
+      model.put("brand", brand);
+      model.put("stores", brand.getStores());
+      model.put("template", "templates/brand.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
 
   }
 }
