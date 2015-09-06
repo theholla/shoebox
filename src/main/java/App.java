@@ -65,7 +65,7 @@ public class App {
       int id = Integer.parseInt(request.params("id"));
       Store store = Store.find(id);
       model.put("store", store);
-      model.put("brands", store.getBrands());
+      model.put("brands", Brand.all());
       model.put("template", "templates/store.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
@@ -76,11 +76,32 @@ public class App {
       int id = Integer.parseInt(request.params("id"));
       Brand brand = Brand.find(id);
       model.put("brand", brand);
-      model.put("stores", brand.getStores());
+      model.put("stores", Store.all());
       model.put("template", "templates/brand.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    /* Individual brand --> POST a store */
+    post("/add_stores", (request, response) -> {
+      int brandId = Integer.parseInt(request.queryParams("brand_id"));
+      int storeId = Integer.parseInt(request.queryParams("store_id"));
+      Store store = Store.find(storeId);
+      Brand brand = Brand.find(brandId);
+      brand.addStore(store);
+      response.redirect("/brands/" + brandId);
+      return null;
+    });
+
+    /* Individual store --> POST a brand */
+    post("/add_brands", (request, response) -> {
+      int storeId = Integer.parseInt(request.queryParams("store_id"));
+      int brandId = Integer.parseInt(request.queryParams("brand_id"));
+      Brand brand = Brand.find(brandId);
+      Store store = Store.find(storeId);
+      store.addBrand(brand);
+      response.redirect("/stores/" + storeId);
+      return null;
+    });
 
   }
 }

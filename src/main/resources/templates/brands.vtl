@@ -1,9 +1,28 @@
+#if ($brands.size() !=0)
+  <h3>Brands galore!</h3>
+
+    <!-- List of Brand Names -->
+
+    <ol>
+      #foreach ($brand in $brands)
+      <li><a href="/brands/$brand.getId()">$brand.getName()</a></li>
+      #end
+    </ol>
+
+  #else
+  <hr/>
+  No brands? Are you at Burning Man?
+#end
+
+
+<hr/>
+
 <!-- New Brand Form -->
 
 <form action="/brands" method="post">
   <div class="form-group row">
     <div class="col-sm-6">
-      <h2>Add a new brand!</h2>
+      <h4>Hey shoebox, there's a brand you should know about:</h4>
       <label for="name" class="sr-only">Brand Name</label>
       <input id="name" name="name" class="form-control" type="text" placeholder="Brand Name">
     </div>
@@ -26,11 +45,3 @@
 </form>
 
 <hr/>
-
-<!-- List of Brand Names -->
-
-<ol>
-  #foreach ($brand in $brands)
-  <li><a href="/brands/$brand.getId()">$brand.getName()</a></li>
-  #end
-</ol>
