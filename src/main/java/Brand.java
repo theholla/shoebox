@@ -128,7 +128,7 @@ public class Brand {
 
   public ArrayList<Store> getStores() {
     try(Connection con = DB.sql2o.open()){
-      String sql = "SELECT store_id FROM stores_brands WHERE brand_id = :brand_id";
+      String sql = "SELECT DISTINCT store_id FROM stores_brands WHERE brand_id = :brand_id";
       List<Integer> storeIds = con.createQuery(sql)
       .addParameter("brand_id", this.getId())
       .executeAndFetch(Integer.class);
