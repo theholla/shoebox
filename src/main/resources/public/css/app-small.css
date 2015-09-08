@@ -1,0 +1,22 @@
+@media (max-width: 360px) {
+
+  h2 {
+    font-size: 100%;
+  }
+
+  h3 {
+    font-size: 100%;
+  }
+}
+
+@media (min-width: 361px) {
+
+  h2 {
+    font-size: 100%;
+  }
+
+  h3 {
+    font-size: 150%;
+  }
+
+}

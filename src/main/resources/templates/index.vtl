@@ -1,42 +1,37 @@
-<head>
-  <title>Shoe Box</title>
-</head>
-<body>
-  <h2>Keep track of your favorite stores and brands. Throw some data in your shoebox,
-    then go ride bikes or something.</h2>
+<h2>Keep track of your favorite stores and brands. Throw some data in your shoebox,
+  then go ride bikes or something.</h2>
 
-  <div class='container-fluid'>
-    <div class='row'>
+<div class='container-fluid'>
+  <div class='row'>
 
-      <!-- Stores column -->
+    <!-- Stores column -->
 
-      <div class='col-sm-6'>
-        <div class='box padding center'>
-          #if ($stores.size() < 2)
-            <!-- <img class='center' alt='sad shoebox' src='img/shoebox_sad'> -->
-            <h3>Your shoebox looks lonely. Care to add a few stores?</h3>
-            <h3><a href='/stores'>add a store<span class='glyphicon glyphicon-chevron-right'></span></a></h3>
-            #else
-            <h3>this shoebox contains $stores.size() stores</h3>
-            <h3><a href='/stores'>see your stores<span class='glyphicon glyphicon-chevron-right'></span></a></h3>
-          #end
-        </div>
+    <div class='col-sm-6'>
+      <div class='box padding center'>
+        #if ($stores.size() < 2)
+          <!-- <img class='center' alt='sad shoebox' src='img/shoebox_sad'> -->
+          <h3>Your shoebox looks lonely. Care to add a few stores?</h3>
+          <h3><a href='/stores'>add a store<span class='glyphicon glyphicon-chevron-right'></span></a></h3>
+          #else
+          <h3>this shoebox contains $stores.size() stores</h3>
+          <h3><a href='/stores'>see your stores<span class='glyphicon glyphicon-chevron-right'></span></a></h3>
+        #end
       </div>
-
-    <!-- Brands column -->
-
-      <div class='col-sm-6'>
-        <div class='box padding center'>
-          #if ($brands.size() < 2)
-            <h3>Have a favorite brand? Add it to your shoebox!</h3>
-            <h3><a href='/brands'>add a brand<span class='glyphicon glyphicon-chevron-right'></span></a></h3>
-            #else
-            <h3>there are $brands.size() brands in your shoebox</h3>
-            <h3><a href='/brands'>see your brands<span class='glyphicon glyphicon-chevron-right'></span></a></h3>
-          #end
-        </div>
-      </div>
-
     </div>
+
+  <!-- Brands column -->
+
+    <div class='col-sm-6'>
+      <div class='box padding center'>
+        #if ($brands.size() < 2)
+          <h3>Have a favorite brand? Add it to your shoebox!</h3>
+          <h3><a href='/brands'>add a brand<span class='glyphicon glyphicon-chevron-right'></span></a></h3>
+          #else
+          <h3>there are $brands.size() brands in your shoebox</h3>
+          <h3><a href='/brands'>see your brands<span class='glyphicon glyphicon-chevron-right'></span></a></h3>
+        #end
+      </div>
+    </div>
+
   </div>
-</body>
+</div>
