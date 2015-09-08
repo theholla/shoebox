@@ -10,9 +10,11 @@ In this app, you can showcase local brands of shoes and keep track of the stores
 
 ## Setup
 
-* Please have all Java developer tools ready, including the JDK.
-* This app uses Apache Spark and Velocity to handle its user interface.
-* You'll need to be able to run and compile Java. This app uses Gradle for that purpose. To run this project, first setup the local database. Then connect to this folder in terminal and type ```gradle run```.
+* Download and intall the [Java Standard Development Kit](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+* Download and install the [Java Runtime Environment](http://www.java.com/en/)
+* Run ```$ java -version``` to make sure everything's installed correctly
+* To manage this project's dependencies, download and install [Gradle](https://gradle.org/) . If you're using Homebrew, just type ```$ brew install gradle```
+* To run this project, first setup the local database (instructions below). Then connect to this folder in terminal and type ```gradle run```.
 
 **To use the database included with this file, follow these instructions:**
 
