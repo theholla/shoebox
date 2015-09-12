@@ -34,6 +34,10 @@ In this app, you can showcase local brands of shoes and keep track of the stores
 
 Java, Apache Spark and Velocity templates, PostgreSQL Database, and a little help from Bootstrap.
 
+## UI
+
+<img src="/src/main/resources/public/img/ss.png">
+
 ### Legal
 
 Copyright (c) 2015 **Diana Holland**
